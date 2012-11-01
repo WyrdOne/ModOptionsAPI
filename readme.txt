@@ -1,8 +1,8 @@
 ModOptionsAPI
 
-Author: Clinton Alexander
+Author: Jonathan Brazell (WyrdOne)
 Version: 9
-Compatible: Minecraft 1.2.5
+Compatible: Minecraft 1.4.2
 Description: An API for allowing simple mod options menus in Minecraft Options menu.
 
 For non-developers, please go to "Installation"
@@ -20,28 +20,24 @@ Installation
 
 4) Copy the files into your minecraft.jar 
 
-6) Delete META-INF folder IF it exists in the minecraft.jar
+5) Delete META-INF folder IF it exists in the minecraft.jar
 
-7) Run Minecraft
+6) Run Minecraft
 
 
-* Windows: <your user folder>/AppData/Roaming/.minecraft/bin/
+* Windows: <your user folder>\AppData\Roaming\.minecraft\bin\ or
+           <your user folder>\Application Data\.minecraft\bin\
 * Mac: Home -> Library -> Application Support -> Minecraft -> bin
 * Linux: ~/.minecraft/bin/
-
-------------------
-Requirements
-------------------
-
-Risugami's ModLoader is required. If you do not install it this mod
-may crash when key bindings are set
 
 ------------------
 Compatibility
 ------------------
 
-Known issues: GuiAPI requires a patch. To patch copy the files in the "guiapi patch" folder
-into the Minecraft.jar file AFTER following steps 1-7 of the installation.
+Any mod that changes the GuiConnecting, GuiIngameMenu, GuiOptions, or
+GuiSelectWorld classes may be incompatible.  A linking module is provided for
+GuiAPI, as long as Mod Options API is installed AFTER GuiAPI, then the two APIs
+will work fine together.
 
 ------------------
 Developers
@@ -55,11 +51,9 @@ There are two ways to begin using this mod in your mod:
 
 (Number 1 is obviously prefered, and thus this is mod loader compatible, but does not NEED modloader to run)
 
-An example source is provided in /examples/. It will not compile, it is merely example code.
+Example mods are provided in /examples/.
 
 JavaDoc is in /doc/, navigate to index.html for the JavaDoc index.
-
-If you wish to begin understanding the ModOptionsAPI source, first check src/modoptionsapi/ModOptionsAPI.java.
 
 API Features:
 - Boolean/ Toggle Options
@@ -80,46 +74,45 @@ API Features:
 Version History
 ------------------
 
-9 - Minecraft 1.2.5 Compatible
+9.3 - Minecraft 1.4.2 Compatible
+- Made compatible with Minecraft 1.4.2
+- Changed IntegerSliderFormat to include the option name as well as the integer value.
 
+9.2 - Minecraft 1.3.2 Compatible
+- Made compatible with Minecraft 1.3.2
+
+9.1 - Minecraft 1.3.1 Compatible
+- Made compatible with Minecraft 1.3.1
+- Forked from original version since original author no longer maintains the code.
+
+9 - Minecraft 1.2.5 Compatible
 (Overview)
 - WyrdOne made MOAPI compatible with 1.2.5
 - Removed ModMappedMultiOption
-
 (API changes)
 - ModMappedMultiOption has been removed
 -- Was a deprecated feature
 
 8 - Minecraft 1.1 Compatible
-
 - Made compatible with Minecraft 1.1
 
 7 - Minecraft 1.0 Compatible
-
 - Made compatible with Minecraft 1.0 and version number bumped to 7 to prevent the mod being removed from the MC forums (rounded down to 7)
 - New folder format which is automatically generated from a custom packing script
 
 0.7.1 - Minecraft Beta 1.8 compatible version
-
 Sorry if this changelog isn't descriptive, due to the long time of not working, I have lost the majority of the changelog
-
 (Overview)
 - Removed all deprecated elements in ModSliderOption
-
 - Added ModMappedOption
 - Set ModMappedMultiOption to deprecated
-
 - Internal ID concept added such that all options can have a separate internal storage ID to their display ID
 - Added new constructors to all options and sub-menus/options to allow a custom internal ID
-
 - Added return values in ModOptions to many more methods in order to make it a builder class
-
 - Added new ModOptions.setOptionStringFormat(ModOption, DisplayStringFormatter)
 - Added new ModOptions.addOptionFormatter(ModOption, DisplayStringFormatter)
 
-
 0.7 - Additions. Threatening changes with conflicts.
-
 (Overview)
 - Threatening changes: Restructuring of GUI classes, unlikely to break anything, but some methods throw different *runtime* exceptions now, so please check the "Potentially Threatening Method Signature Changes for API" section
 - Restructured some of the gui classes, more to come in 0.8 which WILL be breaking changes.
@@ -127,15 +120,12 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Added text input fields
 - Added more API points for simplicity (primarily overloading int with Integer methods to allow more flexibility)
 - Added getValue(global) and setValue(value, global) to remove need for xGlobalValue() methods and reduce unecessary code branching
-
 (Class Additions to API)
 - Added modoptionsapi.ModKeyOption for adding key bindings
 - Added modoptionsapi.ModTextOption for adding pure text fields
 - Added modoptionsapi.MOFormatters.NoFormat to allow just the value in a button
-
 (Exception Additions)
 - Added modoptionsapi.KeyAlreadyBoundException for when a keybinding already exists and something is attempting to re-use that binding
-
 (Class Changes and Additions to GUI)
 - Added package modoptionsapi.gui
 - Moved modoptionsapi.MOGuiSider to modoptionsapi.gui.Slider
@@ -143,7 +133,6 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Added modoptionsapi.gui.TextInputField
 - Added modoptionsapi.gui.TextField
 - Added modoptionsapi.gui.KeyBindingField
-
 (Method Additions for API (GUI specific ignored))
 - Added ModOption.setValue(value, global) to allow setting value in scope without setGlobalValue/setLocalVValue
 - Added ModOption.getValue(global) to allow getting from a scope without calling getGlobalValue and getLocalValue
@@ -152,15 +141,11 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Added ModOptions.addTextOption for adding a text option
 - Many other Binding/ Text option methods added to ModOptions, check Javadoc or diff records on github
 - Many other convenience methods added, check Javadoc or diff records on GitHub
-
 (Non-breaking Method Signature Changes for API (Gui specific ignored))
 - Changed all ModOptions.addXOption to return the option created
-
 (Potentially Breaking Method Signature Changes for API)
 - Changed all ModOptions.setOptionValue methods to throw NoSuchOptionException instead of IncompatibleOptionTypeException when the case applies
 - Changed all ModOptions.get<X>Value methods to throw IncompatibleOptionTypeException where the case applies
-
-
 (Bug Fixes)
 - Fixed obscure unreported bug in ModOption.setValue(value) where local/ global value were set backwards. 
 
@@ -184,7 +169,6 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Improved formatters to be able to be chained
 - Changed file format for slider values to a float
 - Fixed several slider bugs, including right click not setting global mode
-
 (API Additions)
 - Added ModOptions.getToggleValue for getting a toggle value
 - Added ModOptions.getSliderValue for getting a slider's float value
@@ -198,23 +182,19 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Added ModSliderOption.untransformValue as the inverse of transformValue
 - Added MOFormatters.integerSlider field for polling the new formatter type
 - Added MOFormatters.IntegerSliderFormat for easy setting of an integer slider
-
 (Depreciations) - To be removed in 1.0
 - ModSliderOption.getIntValue(float). Use getValue/getLocalValue/getGlobalValue
 - ModSliderOption.getIntValue(). Use getValue/getLocalValue/getGlobalValue
 - ModSliderOption.setIntValue(). Use setValue/setLocalValue/setGlobalValue and Integer.floatValue/ (float)
 - ModSliderOption.getFloatValue(int). Use getValue/getLocalValue/getGlobalValue
 - ModsliderOption.getFloatValue(). Use getValue/getLocalValue/getGlobalValue
-
 (Improvements/ Bug Fixes)
 - Fixed slider bug preventing setting value to GLOBAL
-
 (API Changes)
 - Changed ModOptions.setOptionStringFormat to remove all other formatters added to preserve expected behaviour, use addOptionFormatter for new behaviour
 - Changed ModOptionsGuiController.setFormatter to remove all other formatters to preserve expected behaviour, use addFormatter for new behaviour
 - Changed ModOptions.getDisplayString to now chain all added formatters for multiple formatted output
 - Changed SuffixFormat.manipulate to not add the name label automatically in line with multiple formatters
-
 (File Format)
 - The slider option is now stored as a float value
 
@@ -223,13 +203,10 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Added callbacks
 - Updated for MCP212/Minecraft Beta 1.5_01
 - Added scrolling in menus
-
 (API Additions)
 - MOCallback abstract class
-
 (Improvements)
 - Some bug fixes, details forgotten due to 1.5 release (>.>)
-
 (File Changes)
 - GuiModOptions.java -> GuiModScrollOptions.java (not a part of the public API, part of implementation)
 
@@ -243,16 +220,12 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 (Overview)
 - Added a new file format called a .modoptions to easily write your own options for this API with only 5 lines of actual Java, which before would have used 50+
 - Made 1.4_01 compatible 
-
 (Files)
 - Added new example file called Test.modoptions
 - Added new exception type
-
 (Additions)
 - New exception type: MOMissingModException
-
 - Added ModOptionsAPI.addMod(String) to load your mod options from a new .modoptions file format
-
 (Improvements)
 - Improved IncompatibleOptionTypeException
 
@@ -261,10 +234,8 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Added world specific and server specific values
 - Moved user files to a separate ZIP file
 - Moved dev files to a separate ZIP file
-
 (Files)
 - Added 3 new files to files and compatiblity patch for world/server options
-
 (Additions)
 - Added ModOptions.getMultiplayerSubOptions() for getting submenus that can use server specific options
 - Added ModOptions.getSingleplayerSubOptions() for getting submenus that can use world specific options
@@ -274,7 +245,6 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Added ModOptions.isSingleplayerMod() for checking if the menu can use world specific options
 - Added ModOptions.loadValues(String, boolean) for compatibility with new save options
 - Added ModOptions.save(String, boolean) for compatibility with new save options
-
 - Added ModOption.localValue for representing the current local value
 - Added ModOption.global to flag whether to use global value or not
 - Added ModOption.setLocalValue(E)
@@ -283,28 +253,21 @@ Sorry if this changelog isn't descriptive, due to the long time of not working, 
 - Added ModOption.setLocalValue(E)
 - Added ModOption.useGlobalValue() for checking if getValue() is to use the global value or not
 - Added ModOption.setGlobal(boolean) for settng whether getValue() is to use the global value
-
 - Added ModSliderOption.setGlobalValue(Float) override
 - Added ModSliderOption.setLocalValue(Float) override
 - Added ModSliderOption.getFloatValue(float) for checking a given value
 - Added ModSliderOption.getIntValue(float) for checking a given value 
-
 - Added ModOptionsAPI.getMultiplayerMods() for getting mods that have server specific options enabled
 - Added ModOptionsAPI.getSingleplayerMos() for getting mods that have world specific options enabled
-
 - Added ModOptionsGuiController.getDisplayString(ModOption, boolean) to denote whether to use local value or not
-
 (Non Breaking Changes)
 - Changed ModOptions.loadValues() to load only global values
 - Changed ModOptions.save() to save only global values
-
 - Changed ModOption.setValue(E) to set the current scope value
 - Changed ModOption.getValue() to use the global value only when ModOptions.global is true
-
 - Changed ModSliderOption.getFloatValue() to use current scope value
 - Changed ModSliderOption.getIntValue() to use current scope value
 - Changed ModSliderOption.setIntValue(int) to only current scope value to 1st param
-
 - Changed ModOptionsGuiController.getDisplayString(ModOption) to use global value only
 
 0.3.3.2

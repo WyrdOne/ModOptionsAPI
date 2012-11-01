@@ -115,7 +115,7 @@ public class StdFormatters {
 			try {
 				float f = Float.parseFloat(value);
 				int i = (int) f;
-				return "" + i;
+				return option.getName() + ": " + i;
 			} catch (NumberFormatException e) {		
 				System.out.println("(MdoOptionsAPI) Could not format " + value + " into an integer");
 				return option.getName() + ": " + value;

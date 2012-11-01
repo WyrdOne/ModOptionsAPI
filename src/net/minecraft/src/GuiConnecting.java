@@ -1,7 +1,5 @@
 package net.minecraft.src;
 
-import java.io.PrintStream;
-import java.util.List;
 import net.minecraft.client.Minecraft;
 //====================
 // START MODOPTIONSAPI
@@ -18,7 +16,23 @@ public class GuiConnecting extends GuiScreen
     private NetClientHandler clientHandler;
 
     /** True if the connection attempt has been cancelled. */
-    private boolean cancelled;
+    private boolean cancelled = false;
+
+    public GuiConnecting(Minecraft par1Minecraft, ServerData par2ServerData)
+    {
+        this.mc = par1Minecraft;
+        ServerAddress var3 = ServerAddress.func_78860_a(par2ServerData.serverIP);
+        par1Minecraft.loadWorld((WorldClient)null);
+        par1Minecraft.setServerData(par2ServerData);
+    		//====================
+    		// START MODOPTIONSAPI
+    		//====================
+    		ModOptionsAPI.joinedMultiplayerWorld(par2ServerData.serverName);
+    		//====================
+    		// END MODOPTIONSAPI
+    		//====================
+        this.spawnNewServerThread(var3.getIP(), var3.getPort());
+    }
 
     public GuiConnecting(Minecraft par1Minecraft, String par2Str, int par3)
     {
@@ -29,10 +43,15 @@ public class GuiConnecting extends GuiScreen
     		//====================
     		// END MODOPTIONSAPI
     		//====================
-        cancelled = false;
-        System.out.println((new StringBuilder()).append("Connecting to ").append(par2Str).append(", ").append(par3).toString());
-        par1Minecraft.changeWorld1(null);
-        (new ThreadConnectToServer(this, par1Minecraft, par2Str, par3)).start();
+        this.mc = par1Minecraft;
+        par1Minecraft.loadWorld((WorldClient)null);
+        this.spawnNewServerThread(par2Str, par3);
+    }
+
+    private void spawnNewServerThread(String par1Str, int par2)
+    {
+        System.out.println("Connecting to " + par1Str + ", " + par2);
+        (new ThreadConnectToServer(this, par1Str, par2)).start();
     }
 
     /**
@@ -40,27 +59,25 @@ public class GuiConnecting extends GuiScreen
      */
     public void updateScreen()
     {
-        if (clientHandler != null)
+        if (this.clientHandler != null)
         {
-            clientHandler.processReadPackets();
+            this.clientHandler.processReadPackets();
         }
     }
 
     /**
      * Fired when a key is typed. This is the equivalent of KeyListener.keyTyped(KeyEvent e).
      */
-    protected void keyTyped(char c, int i)
-    {
-    }
+    protected void keyTyped(char par1, int par2) {}
 
     /**
      * Adds the buttons (and other controls) to the screen in question.
      */
     public void initGui()
     {
-        StringTranslate stringtranslate = StringTranslate.getInstance();
-        controlList.clear();
-        controlList.add(new GuiButton(0, width / 2 - 100, height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
+        StringTranslate var1 = StringTranslate.getInstance();
+        this.controlList.clear();
+        this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, var1.translateKey("gui.cancel")));
     }
 
     /**
@@ -70,14 +87,14 @@ public class GuiConnecting extends GuiScreen
     {
         if (par1GuiButton.id == 0)
         {
-            cancelled = true;
+            this.cancelled = true;
 
-            if (clientHandler != null)
+            if (this.clientHandler != null)
             {
-                clientHandler.disconnect();
+                this.clientHandler.disconnect();
             }
 
-            mc.displayGuiScreen(new GuiMainMenu());
+            this.mc.displayGuiScreen(new GuiMainMenu());
         }
     }
 
@@ -86,18 +103,18 @@ public class GuiConnecting extends GuiScreen
      */
     public void drawScreen(int par1, int par2, float par3)
     {
-        drawDefaultBackground();
-        StringTranslate stringtranslate = StringTranslate.getInstance();
+        this.drawDefaultBackground();
+        StringTranslate var4 = StringTranslate.getInstance();
 
-        if (clientHandler == null)
+        if (this.clientHandler == null)
         {
-            drawCenteredString(fontRenderer, stringtranslate.translateKey("connect.connecting"), width / 2, height / 2 - 50, 0xffffff);
-            drawCenteredString(fontRenderer, "", width / 2, height / 2 - 10, 0xffffff);
+            this.drawCenteredString(this.fontRenderer, var4.translateKey("connect.connecting"), this.width / 2, this.height / 2 - 50, 16777215);
+            this.drawCenteredString(this.fontRenderer, "", this.width / 2, this.height / 2 - 10, 16777215);
         }
         else
         {
-            drawCenteredString(fontRenderer, stringtranslate.translateKey("connect.authorizing"), width / 2, height / 2 - 50, 0xffffff);
-            drawCenteredString(fontRenderer, clientHandler.field_1209_a, width / 2, height / 2 - 10, 0xffffff);
+            this.drawCenteredString(this.fontRenderer, var4.translateKey("connect.authorizing"), this.width / 2, this.height / 2 - 50, 16777215);
+            this.drawCenteredString(this.fontRenderer, this.clientHandler.field_72560_a, this.width / 2, this.height / 2 - 10, 16777215);
         }
 
         super.drawScreen(par1, par2, par3);
@@ -111,12 +128,19 @@ public class GuiConnecting extends GuiScreen
         return par0GuiConnecting.clientHandler = par1NetClientHandler;
     }
 
-    /**
-     * Returns true if the connection attempt has been cancelled, false otherwise.
-     */
+    static Minecraft func_74256_a(GuiConnecting par0GuiConnecting)
+    {
+        return par0GuiConnecting.mc;
+    }
+
     static boolean isCancelled(GuiConnecting par0GuiConnecting)
     {
         return par0GuiConnecting.cancelled;
+    }
+
+    static Minecraft func_74254_c(GuiConnecting par0GuiConnecting)
+    {
+        return par0GuiConnecting.mc;
     }
 
     /**
@@ -125,5 +149,20 @@ public class GuiConnecting extends GuiScreen
     static NetClientHandler getNetClientHandler(GuiConnecting par0GuiConnecting)
     {
         return par0GuiConnecting.clientHandler;
+    }
+
+    static Minecraft func_74249_e(GuiConnecting par0GuiConnecting)
+    {
+        return par0GuiConnecting.mc;
+    }
+
+    static Minecraft func_74250_f(GuiConnecting par0GuiConnecting)
+    {
+        return par0GuiConnecting.mc;
+    }
+
+    static Minecraft func_74251_g(GuiConnecting par0GuiConnecting)
+    {
+        return par0GuiConnecting.mc;
     }
 }

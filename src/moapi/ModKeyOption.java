@@ -1,13 +1,9 @@
 package moapi;
 
 import moapi.gui.GuiController;
-
 import org.lwjgl.input.Keyboard;
-
 import net.minecraft.src.GameSettings;
-import net.minecraft.src.ModLoader;
 import net.minecraft.src.KeyBinding;
-
 import java.util.Hashtable;
 import java.util.prefs.InvalidPreferencesFormatException;
 
@@ -17,7 +13,7 @@ import java.util.prefs.InvalidPreferencesFormatException;
 * type.
 *
 * @author	Clinton Alexander
-* @version	1.0
+* @version	0.9.1
 * @since 	0.7
 */
 public class ModKeyOption extends ModOption<Integer> {
