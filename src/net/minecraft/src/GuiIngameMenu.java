@@ -3,8 +3,7 @@ package net.minecraft.src;
 //====================
 // START MODOPTIONSAPI
 //====================
-import moapi.ModOptions;
-import moapi.gui.ModMenu;
+import moapi.clientgui.*;
 //====================
 // END MODOPTIONSAPI
 //====================
@@ -42,6 +41,7 @@ public class GuiIngameMenu extends GuiScreen
     		//====================
     		// START MODOPTIONSAPI
     		//====================
+        ClientGui.modifyGuiInGameMenu(this, controlList);
     		controlList.add(new GuiButton(30, width / 2 - 100, height / 4 + 72 + var1, "Mod World Options"));		
     		//====================
     		// END MODOPTIONSAPI
@@ -74,7 +74,7 @@ public class GuiIngameMenu extends GuiScreen
             case 4:
                 this.mc.displayGuiScreen((GuiScreen)null);
                 this.mc.setIngameFocus();
-                this.mc.sndManager.func_82461_f();
+                this.mc.sndManager.resumeAllSounds();
                 break;
 
             case 5:
@@ -91,17 +91,9 @@ public class GuiIngameMenu extends GuiScreen
          		// START MODOPTIONSAPI
          		//====================
     		        break;
-    		    case 30:
-    			    // Multiplayer worlds have no name
-              if (mc.getServerData() != null) {
-    				    mc.displayGuiScreen(new ModMenu(this, mc.getServerData().serverName, true));
-    			    } else {
-    				    // Get the world name
-    				    // returns MpServer - String name = mc.theWorld.getWorldInfo().getWorldName();
-    				    String name = mc.getIntegratedServer().getWorldName();
-    				    mc.displayGuiScreen(new ModMenu(this, name, false));
-    			    }
-    			    break;
+    		    case 302:
+             		ClientGui.handleCommands(mc, this, par1GuiButton);
+                break;    
         		//====================
         		// END MODOPTIONSAPI
         		//====================

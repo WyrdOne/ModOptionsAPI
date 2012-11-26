@@ -7,8 +7,7 @@ import java.util.List;
 //====================
 // START MODOPTIONSAPI
 //====================
-import moapi.ModOptionsAPI;
-import moapi.ModOptions;
+import moapi.api.*;
 //====================
 // END MODOPTIONSAPI
 //====================
@@ -215,7 +214,10 @@ public class GuiSelectWorld extends GuiScreen
         		//====================
         		// END MODOPTIONSAPI
         		//====================
-            this.mc.launchIntegratedServer(var2, var3, (WorldSettings)null);
+            if (this.mc.getSaveLoader().func_90033_f(var2))
+            {
+                this.mc.launchIntegratedServer(var2, var3, (WorldSettings)null);
+            }
         }
     }
 

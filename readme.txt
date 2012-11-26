@@ -1,8 +1,8 @@
 ModOptionsAPI
 
 Author: Jonathan Brazell (WyrdOne)
-Version: 9
-Compatible: Minecraft 1.4.2
+Version: 1.0.0
+Compatible: Minecraft 1.4.4
 Description: An API for allowing simple mod options menus in Minecraft Options menu.
 
 For non-developers, please go to "Installation"
@@ -60,19 +60,28 @@ API Features:
 - List/ Multi-value options
 - Text input options
 - Key binding options
+- Slider options
 - Saves conveniently to disk in consistent save file
 - Well designed and consistent API with both a simple and more advanced interface available.
 - Includes all source and no files are obfuscated. 
 - Fully JavaDoc commented where appropriate.
 - Simple GUI API interface; no complex widgets or unexpected behaviour.
 - Individual Server and World values
-- Super simple API using a new ModOptions file format!
 - Scrolling menus are always available
 - Callbacks so you have more control over value changes
 
 ------------------
 Version History
 ------------------
+
+1.0.0 = Minecraft 1.4.4 Compatible
+- Made compatible with Minecraft 1.4.4
+- Moved api from package moapi to moapi.api
+- Moved moapi.gui to moapi.clientgui
+- Moved formatting options and narrow/wide options internal to ModOption class
+- Made class to handle modifying Minecraft menus to allow minimal intrusion into base classes
+- Made GuiAPI inteface code 100% reflection to allow it to compile without GuiAPI
+- Eliminated "super simple" method that was not really so simple
 
 9.3 - Minecraft 1.4.2 Compatible
 - Made compatible with Minecraft 1.4.2

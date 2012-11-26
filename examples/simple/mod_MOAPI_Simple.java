@@ -2,13 +2,13 @@ package net.minecraft.src;
 
 import java.lang.reflect.*;
 import net.minecraft.client.Minecraft;
-import moapi.*;
-import moapi.gui.*;
+import moapi.api.*;
+import moapi.clientgui.*;
 
 public class mod_MOAPI_Simple extends BaseMod {
   // Copyright/license info
   private static final String Name = "MOAPI Simple Example";
-  private static final String Version = "0.1 (For use with Minecraft 1.4.2)";
+  private static final String Version = "0.2 (For use with Minecraft 1.4.4)";
 	private static final String Copyright = "All original code and images (C) 2012, Jonathan \"Wyrd\" Brazell";
 	private static final String License = "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.";
   // Options
@@ -31,11 +31,7 @@ public class mod_MOAPI_Simple extends BaseMod {
     // Add option screen to the Mod Options menu
     ModOptionsAPI.addMod(options);
     // Add slider for quantity to drop when block is harvested.
-    options.addSlider("Quantity Dropped", 1, 64);
-    // Set default value for slider
-    ((ModSliderOption)options.getOption("Quantity Dropped")).setValue(1);
-    // Format the slider to only show integer values.
-	  options.setOptionStringFormat("Quantity Dropped", StdFormatters.integerSlider);
+    options.addSlider("Quantity Dropped", 1, 64).setValue(1.0f).addFormatter(StdFormatters.integerSlider);
 	  // Add mapped option for the texture to use for the block.
     options.addMappedOption("Block Texture",
       new int[]   {16,            2,      4,        7,       8,     49},       // Values

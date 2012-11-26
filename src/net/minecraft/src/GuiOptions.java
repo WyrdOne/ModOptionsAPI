@@ -3,7 +3,7 @@ package net.minecraft.src;
 //====================
 // START MODOPTIONSAPI
 //====================
-import moapi.gui.ModMenu; 
+import moapi.clientgui.*; 
 //====================
 // END MODOPTIONSAPI
 //====================
@@ -26,30 +26,10 @@ public class GuiOptions extends GuiScreen
     /** The title string that is displayed in the top-center of the screen. */
     protected String screenTitle = "Options";
 
-    //====================
-    // START MODOPTIONSAPI
-    //====================
-    private boolean runningGuiAPI = false;
-    //====================
-    // END MODOPTIONSAPI
-    //====================
-
     public GuiOptions(GuiScreen par1GuiScreen, GameSettings par2GameSettings)
     {
         this.parentScreen = par1GuiScreen;
         this.options = par2GameSettings;
-        //====================
-        // START MODOPTIONSAPI
-        //====================
-        runningGuiAPI = true;
-        try {
-          Class.forName("net.minecraft.src.ModSettings", false, GuiOptions.class.getClassLoader());
-        } catch (ClassNotFoundException e) {
-          runningGuiAPI = false;
-        }
-        //====================
-        // END MODOPTIONSAPI
-        //====================
     }
 
     /**
@@ -91,21 +71,14 @@ public class GuiOptions extends GuiScreen
         this.controlList.add(new GuiButton(100, this.width / 2 + 2, this.height / 6 + 96 - 6, 150, 20, var1.translateKey("options.controls")));
         this.controlList.add(new GuiButton(102, this.width / 2 - 152, this.height / 6 + 120 - 6, 150, 20, var1.translateKey("options.language")));
         this.controlList.add(new GuiButton(103, this.width / 2 + 2, this.height / 6 + 120 - 6, 150, 20, var1.translateKey("options.multiplayer.title")));
+        this.controlList.add(new GuiButton(104, this.width / 2 + 2, this.height / 6 + 144 - 6, 150, 20, var1.translateKey("options.snooper.view")));
     		//====================
     		// START MODOPTIONSAPI
     		//====================
-    		if (runningGuiAPI) {
-        		controlList.add(new GuiButton(301, width / 2 - 152, height / 6 + 144 - 6, 98, 20, "MOAPI Options"));
-            controlList.add(new GuiButton(300, width / 2 -  49, height / 6 + 144 - 6, 98, 20, "GUIAPI Settings"));
-            controlList.add(new GuiButton(104, width / 2 +  54, height / 6 + 144 - 6, 98, 20, var1.translateKey("options.snooper.view")));
-    		} else {
-        		controlList.add(new GuiButton(301, width / 2 - 152, height / 6 + 144 - 6, 150, 20, "Mod Options"));
-            controlList.add(new GuiButton(104, width / 2 + 2, height / 6 + 144 - 6, 150, 20, var1.translateKey("options.snooper.view")));
-    		}
+        ClientGui.modifyGuiOptions(this, controlList);
     		//====================
     		// END MODOPTIONSAPI
     		//====================
-        // removed by ModOptionsAPI - this.controlList.add(new GuiButton(104, this.width / 2 + 2, this.height / 6 + 144 - 6, 150, 20, var1.translateKey("options.snooper.view")));
         this.controlList.add(new GuiButton(200, this.width / 2 - 100, this.height / 6 + 168, var1.translateKey("gui.done")));
     }
 
@@ -160,14 +133,7 @@ public class GuiOptions extends GuiScreen
         		//====================
         		// START MODOPTIONSAPI
         		//====================
-        		if(par1GuiButton.id == 300) {
-        			mc.gameSettings.saveOptions();
-        			GuiAPILink.CallGuiAPI(this);
-            }
-        		if(par1GuiButton.id == 301) {
-        			mc.gameSettings.saveOptions();
-        			mc.displayGuiScreen(new ModMenu(this));
-        		}
+        		ClientGui.handleCommands(mc, this, par1GuiButton);
         		//====================
         		// END MODOPTIONSAPI
         		//====================

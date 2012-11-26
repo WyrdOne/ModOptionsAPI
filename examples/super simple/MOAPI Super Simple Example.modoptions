@@ -1,6 +1,0 @@
-// Options for MOAPI Super Simple Example
-// File should be placed in the
-// "<Minecraft folder>/ModOptions/MOAPI Super Simple Example" folder
-Quantity Dropped:slider:1,64
-// Using this super simple format you lose the ability to set defaults and formats
-Block Texture:mappedmulti:16=Cobblestone,2=Dirt,4=Planks,7=Bricks,8=TNT,49=Glass

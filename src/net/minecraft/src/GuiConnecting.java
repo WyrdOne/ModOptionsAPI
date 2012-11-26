@@ -4,8 +4,7 @@ import net.minecraft.client.Minecraft;
 //====================
 // START MODOPTIONSAPI
 //====================
-import moapi.ModOptionsAPI;
-import moapi.ModOptions;
+import moapi.api.*;
 //====================
 // END MODOPTIONSAPI
 //====================
