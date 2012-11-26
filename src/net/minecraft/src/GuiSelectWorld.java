@@ -214,7 +214,7 @@ public class GuiSelectWorld extends GuiScreen
         		//====================
         		// END MODOPTIONSAPI
         		//====================
-            if (this.mc.getSaveLoader().func_90033_f(var2))
+            if (this.mc.getSaveLoader().canLoadWorld(var2))
             {
                 this.mc.launchIntegratedServer(var2, var3, (WorldSettings)null);
             }

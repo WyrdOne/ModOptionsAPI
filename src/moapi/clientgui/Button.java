@@ -7,7 +7,8 @@ import moapi.api.*;
 * A MOAPI button representation to allow the storage of the option's ID inside
 *
 * @author	Clinton Alexander
-* @version	1.0
+* @author Jonathan Brazell
+* @version	1.0.1
 * @since	0.8
 */
 public class Button extends GuiButton {
@@ -46,7 +47,7 @@ public class Button extends GuiButton {
 	* @param	op		Option
 	*/
   public Button(int id, int x, int y, ModOption option, boolean worldMode) {
-    this(id, x, y, 200, 20, option, worldMode);
+    this(id, x, y, 304, 20, option, worldMode);
   }
 
 	/**
@@ -69,7 +70,7 @@ public class Button extends GuiButton {
 	* @param	op		Options menu
 	*/
   public Button(int id, int x, int y, ModOptions option) {
-    this(id, x, y, 200, 20, option);
+    this(id, x, y, 304, 20, option);
   }
 
 	/**

@@ -1,8 +1,8 @@
 ModOptionsAPI
 
 Author: Jonathan Brazell (WyrdOne)
-Version: 1.0.0
-Compatible: Minecraft 1.4.4
+Version: 1.0.1
+Compatible: Minecraft 1.4.5
 Description: An API for allowing simple mod options menus in Minecraft Options menu.
 
 For non-developers, please go to "Installation"
@@ -74,7 +74,11 @@ API Features:
 Version History
 ------------------
 
-1.0.0 = Minecraft 1.4.4 Compatible
+1.0.1 - Minecraft 1.4.5 Compatible
+- Made compatible with Minecraft 1.4.5
+- Made options bigger on screen 
+
+1.0.0 - Minecraft 1.4.4 Compatible
 - Made compatible with Minecraft 1.4.4
 - Moved api from package moapi to moapi.api
 - Moved moapi.gui to moapi.clientgui

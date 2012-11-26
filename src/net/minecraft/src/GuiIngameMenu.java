@@ -42,7 +42,6 @@ public class GuiIngameMenu extends GuiScreen
     		// START MODOPTIONSAPI
     		//====================
         ClientGui.modifyGuiInGameMenu(this, controlList);
-    		controlList.add(new GuiButton(30, width / 2 - 100, height / 4 + 72 + var1, "Mod World Options"));		
     		//====================
     		// END MODOPTIONSAPI
     		//====================

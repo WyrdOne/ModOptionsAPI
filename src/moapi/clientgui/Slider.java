@@ -9,13 +9,14 @@ import moapi.api.*;
 * A replacement for the default MC Slider. 
 *
 * @author	Clinton Alexander
-* @version	1.0.0.0
+* @author Jonathan Brazell
+* @version	1.0.1
 * @since	0.5
 */
 public class Slider extends GuiButton {
 	// CONSTANTS
 	private static final int SMALL_WIDTH = 150;
-	private static final int WIDE_WIDTH  = 200;
+	private static final int WIDE_WIDTH  = 304;
   public boolean dragging;
 	private ModSliderOption option;
 	

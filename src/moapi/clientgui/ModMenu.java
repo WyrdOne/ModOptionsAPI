@@ -12,6 +12,8 @@ import moapi.api.*;
 * A scrollable screen for modoptionsapi
 *
 * @author	Clinton Alexander (with credit to Mojang for the drawscreen code)
+* @author Jonathan Brazell
+* @version 1.0.1
 * @since	0.6
 */
 public class ModMenu extends GuiScreen {
@@ -125,15 +127,14 @@ public class ModMenu extends GuiScreen {
 	* @param	options		List of mods to display
 	*/
 	private void loadModList(ModOptions[] options) {
-		int xPos = width / 2 - 100;
+		int xPos = width / 2 - 152;
 		int yPos;
 		
 		for(int i = 0; i < options.length; i++) {
-			yPos = height / 6 + (i * 24) + 12;
+			yPos = 41 + (i *24);
 			controlList.add(new Button(i, xPos, yPos, options[i]));
 		}
-		yPos = height / 6 + 168;
-		controlList.add(new GuiButton(200, xPos, yPos, "Done"));
+    controlList.add(new GuiButton(200, width / 2 - 100, height / 6 + 168, 200, 20, "Done"));
 	}
 	
 	/**
@@ -156,30 +157,36 @@ public class ModMenu extends GuiScreen {
 		// ID offset for an option
 		int id = 0;
 		// This is for positioning the elements in two columns
-		int pos = 2;
+		int pos = 0;
 		for(ModOption op : ops) {
+		  if (op.isWide()) {
+        if ((pos % 2)!=0) {
+          pos++;
+        }
+		  }
 			addModOptionButton(op, id, pos);
-			
-			if(op.isWide()) {
-				pos = pos + 2 + (pos % 2);
-			} else {
-				pos++;
-			}
-			
+		  if (op.isWide()) {
+  		  pos += 2;
+  		} else {
+  		  pos++;
+  		}
 			id++;
 		}
 		
+    if ((pos % 2)!=0) {
+      pos++;
+    }
 		int xPos, yPos;
 		// Add the sub options
 		for(int x = 0; x < subOps.length; x++) {
 			// Calculate position of full width bar
-			xPos = width / 2 - 100;
-			yPos = height / 6 + 24 * ((pos + 1) >> 1);
+		  xPos = width / 2 - 152;
+  	  yPos = 41 + ((pos>>1)*24);
 			controlList.add(new Button(x + 101, xPos, yPos, subOps[x]));
-			pos = pos + 2 + (pos % 2);
+		  pos += 2;
 		}
-		
-		controlList.add(new GuiButton(200, width / 2 - 100, height / 6 + 168, "Done"));
+	
+    controlList.add(new GuiButton(200, width / 2 - 100, height / 6 + 168, 200, 20, "Done"));
 	}
 	
 	/**
@@ -193,17 +200,9 @@ public class ModMenu extends GuiScreen {
 		int xPos, yPos;
 		// Display string for option
 		boolean isWide 	= op.isWide();
-		
-		if(!isWide) {
-			// Calculate position of half width bar. Takes up one position
-			xPos = (width / 2 - 155) + (pos % 2) * 160;
-			yPos = height / 6 + 24 * (pos >> 1);
-		} else {
-			// Calculate position of full width bar
-			xPos = width / 2 - 100;
-			yPos = height / 6 + 24 * ((pos + 1) >> 1);
-		}
-		
+
+  	xPos = (width / 2 - 152) + (pos % 2) * 154;
+  	yPos = 41 + ((pos>>1)*24);
 		if(op instanceof ModSliderOption) {
 			Slider btn = new Slider(id, xPos, yPos, (ModSliderOption) op, worldMode);
 			btn.setWide(isWide);

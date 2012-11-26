@@ -11,16 +11,17 @@ import moapi.api.*;
 * GUI for getText() field within MOAPI
 *
 * @author	Clinton Alexander
-* @version	1.0.0.0
+* @author Jonathan Brazell
+* @version	1.0.1
 * @since	0.7
 */
 public class TextField extends TextInputField {
   public TextField(int id, GuiScreen guiscreen, FontRenderer fontrenderer, int x, int y, ModTextOption option, boolean global) {
 		super(id, x, y, fontrenderer);
     parentGuiScreen = guiscreen;
-    xPosition = x - 50;
+    xPosition = x;
     yPosition = y;
-    width = 300;
+    width = 304;
     height = 20;
 		this.option = option;
 		this.global = global;

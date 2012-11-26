@@ -6,7 +6,7 @@ package moapi.api;
 *
 * @author	Clinton Alexander
 * @author	Jonathan Brazell
-* @version	1.0.0
+* @version	1.0.1
 * @since	0.7
 */
 public class ModTextOption extends ModOption<String> {
@@ -91,6 +91,7 @@ public class ModTextOption extends ModOption<String> {
 		super(id, name);
 		setGlobalValue("");
 		setMaxLength(maxLen);
+		wide = true;
 	}
 	
 	//==============
