@@ -2,7 +2,7 @@ ModOptionsAPI
 
 Author: Jonathan Brazell (WyrdOne)
 Version: 1.0.1
-Compatible: Minecraft 1.4.5
+Compatible: Minecraft 1.4.6
 Description: An API for allowing simple mod options menus in Minecraft Options menu.
 
 For non-developers, please go to "Installation"
@@ -13,17 +13,11 @@ Installation
 -----------------
 
 1) Find your minecraft.jar (check note below)*
-
 2) Open the minecraft.jar file in WinRAR or 7zip (do not extract it)
-
 3) Extract the contents of the ModOptionsAPI ZIP file
-
 4) Copy the files into your minecraft.jar 
-
 5) Delete META-INF folder IF it exists in the minecraft.jar
-
 6) Run Minecraft
-
 
 * Windows: <your user folder>\AppData\Roaming\.minecraft\bin\ or
            <your user folder>\Application Data\.minecraft\bin\
@@ -35,21 +29,17 @@ Compatibility
 ------------------
 
 Any mod that changes the GuiConnecting, GuiIngameMenu, GuiOptions, or
-GuiSelectWorld classes may be incompatible.  A linking module is provided for
-GuiAPI, as long as Mod Options API is installed AFTER GuiAPI, then the two APIs
-will work fine together.
+GuiSelectWorld classes may be incompatible.
 
 ------------------
 Developers
 ------------------
 
-The sourcecode for mcp is included in /src/ if you downloaded the developer version
+The sourcecode for mcp is located on GitHub at https://github.com/WyrdOne/ModOptionsAPI
 
-There are two ways to begin using this mod in your mod:
-1) Use a modloader mod and put the initialisation code in your modloader mod constructor
-2) Place the initialisation code else where in your code that you know it will run before the user opens the options menu
+Make sure to initialize your options before the user accesses them.  The load method of your mod is a good place for this.
 
-(Number 1 is obviously prefered, and thus this is mod loader compatible, but does not NEED modloader to run)
+(This is mod loader compatible, but does not NEED modloader to run)
 
 Example mods are provided in /examples/.
 
@@ -74,9 +64,10 @@ API Features:
 Version History
 ------------------
 
-1.0.1 - Minecraft 1.4.5 Compatible
-- Made compatible with Minecraft 1.4.5
-- Made options bigger on screen 
+1.0.1 - Minecraft 1.4.6 Compatible
+- Made compatible with Minecraft 1.4.6
+- Made options wider on screen
+- Fixed issue with done button overlapping option buttons
 
 1.0.0 - Minecraft 1.4.4 Compatible
 - Made compatible with Minecraft 1.4.4

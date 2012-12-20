@@ -9,7 +9,7 @@ import java.util.regex.*;
 *
 * @author	Clinton Alexander
 * @author	Jonathan Brazell
-* @version	1.0.0
+* @version	1.0.1
 * @since	0.1
 */
 public class ModOptions {
@@ -665,7 +665,9 @@ public class ModOptions {
 			for (ModOption option : getOptions()) {
         if (map.containsKey(option.getID())) {
           String val = (String)map.get(option.getID());
-					option.fromString(val, global);
+          try {
+            option.fromString(val, global);
+          } catch (Exception ignored) {}
           // Turn off global default for this option
 					option.setGlobal(global);
         }

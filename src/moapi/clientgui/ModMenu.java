@@ -134,7 +134,7 @@ public class ModMenu extends GuiScreen {
 			yPos = 41 + (i *24);
 			controlList.add(new Button(i, xPos, yPos, options[i]));
 		}
-    controlList.add(new GuiButton(200, width / 2 - 100, height / 6 + 168, 200, 20, "Done"));
+    controlList.add(new GuiButton(200, width / 2 - 100, height - 28, 200, 20, "Done"));
 	}
 	
 	/**
@@ -186,7 +186,7 @@ public class ModMenu extends GuiScreen {
 		  pos += 2;
 		}
 	
-    controlList.add(new GuiButton(200, width / 2 - 100, height / 6 + 168, 200, 20, "Done"));
+    controlList.add(new GuiButton(200, width / 2 - 100, height - 28, 200, 20, "Done"));
 	}
 	
 	/**
