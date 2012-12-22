@@ -1,7 +1,7 @@
 ModOptionsAPI
 
 Author: Jonathan Brazell (WyrdOne)
-Version: 1.0.1
+Version: 1.0.2
 Compatible: Minecraft 1.4.6
 Description: An API for allowing simple mod options menus in Minecraft Options menu.
 
@@ -12,24 +12,16 @@ For developers, please go to Developers
 Installation
 -----------------
 
-1) Find your minecraft.jar (check note below)*
-2) Open the minecraft.jar file in WinRAR or 7zip (do not extract it)
-3) Extract the contents of the ModOptionsAPI ZIP file
-4) Copy the files into your minecraft.jar 
-5) Delete META-INF folder IF it exists in the minecraft.jar
-6) Run Minecraft
-
-* Windows: <your user folder>\AppData\Roaming\.minecraft\bin\ or
-           <your user folder>\Application Data\.minecraft\bin\
-* Mac: Home -> Library -> Application Support -> Minecraft -> bin
-* Linux: ~/.minecraft/bin/
+1) Install ModLoader
+   FML/Forge will also work.
+2) Copy moapi zip file to your mods folder
+3) Start up minecraft and play.
 
 ------------------
 Compatibility
 ------------------
 
-Any mod that changes the GuiConnecting, GuiIngameMenu, GuiOptions, or
-GuiSelectWorld classes may be incompatible.
+MOAPI should be compatible with pretty much any mod.
 
 ------------------
 Developers
@@ -42,8 +34,6 @@ Make sure to initialize your options before the user accesses them.  The load me
 (This is mod loader compatible, but does not NEED modloader to run)
 
 Example mods are provided in /examples/.
-
-JavaDoc is in /doc/, navigate to index.html for the JavaDoc index.
 
 API Features:
 - Boolean/ Toggle Options
@@ -63,6 +53,8 @@ API Features:
 ------------------
 Version History
 ------------------
+
+1.0.2 - Madified MOAPI to no longer edit base classes, does require a mod loader of some sort.
 
 1.0.1 - Minecraft 1.4.6 Compatible
 - Made compatible with Minecraft 1.4.6

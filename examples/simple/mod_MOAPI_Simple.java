@@ -44,6 +44,10 @@ public class mod_MOAPI_Simple extends BaseMod {
     options.save();
   }
 
+  public String getPriorities() {
+    return "required-after:mod_moapi";
+  }
+
   public String getName() {
     return Name;
   }

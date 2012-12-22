@@ -55,6 +55,10 @@ public class mod_MOAPI_Test extends BaseMod {
     ModOptionsAPI.addMod(new ModOptions("Dummy Mod 9"));
   }
 
+  public String getPriorities() {
+    return "required-after:mod_moapi";
+  }
+
   public String getName() {
     return Name;
   }
