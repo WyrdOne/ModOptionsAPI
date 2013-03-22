@@ -1,8 +1,8 @@
 ModOptionsAPI
 
 Author: Jonathan Brazell (WyrdOne)
-Version: 1.0.2
-Compatible: Minecraft 1.4.6
+Version: 1.5
+Compatible: Minecraft 1.5
 Description: An API for allowing simple mod options menus in Minecraft Options menu.
 
 For non-developers, please go to "Installation"
@@ -16,6 +16,13 @@ Installation
    FML/Forge will also work.
 2) Copy moapi zip file to your mods folder
 3) Start up minecraft and play.
+
+-------------------
+Server Installation
+-------------------
+
+1) Copy contents of moapi zip file to your minecraft_server.jar
+2) Start up minecraft and play.
 
 ------------------
 Compatibility
@@ -31,7 +38,7 @@ The sourcecode for mcp is located on GitHub at https://github.com/WyrdOne/ModOpt
 
 Make sure to initialize your options before the user accesses them.  The load method of your mod is a good place for this.
 
-(This is mod loader compatible, but does not NEED modloader to run)
+(MOAPI uses ModLoader to create the option button on the options screen, but it could technically run without it)
 
 Example mods are provided in /examples/.
 
@@ -53,6 +60,8 @@ API Features:
 ------------------
 Version History
 ------------------
+
+1.5 - Updated to Minecraft 1.5 compatibility, added server support as well.
 
 1.0.2 - Madified MOAPI to no longer edit base classes, does require a mod loader of some sort.
 
