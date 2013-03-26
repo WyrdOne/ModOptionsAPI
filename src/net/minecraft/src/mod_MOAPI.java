@@ -16,7 +16,7 @@ import moapi.client.*;
 public class mod_MOAPI extends BaseMod {
   // Copyright/license info
   private static final String Name = "Mod Options API (MOAPI)";
-  private static final String Version = ModOptionsAPI.getVersion() + " (For use with Minecraft 1.5)";
+  private static final String Version = ModOptionsAPI.getVersion() + " (For use with Minecraft 1.5.1)";
   // Other variables
   private boolean cacheGuiOptions = false;
   private boolean cacheGuiIngameMenu = false;
