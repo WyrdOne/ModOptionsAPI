@@ -1,6 +1,5 @@
 package moapi.client;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.src.*;
 
 public class OptionButton extends GuiButton {

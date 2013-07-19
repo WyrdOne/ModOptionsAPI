@@ -1,7 +1,6 @@
 package moapi.client;
 
 import net.minecraft.src.*;
-import net.minecraft.client.Minecraft;
 import moapi.*;
 
 /**

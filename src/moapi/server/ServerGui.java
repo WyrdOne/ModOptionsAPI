@@ -18,7 +18,7 @@ import moapi.*;
 */
 public class ServerGui implements ActionListener {
 	private static ServerGui instance = new ServerGui();
-	private static ServerGUI serverGUI;
+	private static MinecraftServerGui serverGUI;
 	private static DedicatedServer dedicatedServer;
 
 	public static ServerGui getInstance() {
@@ -26,7 +26,7 @@ public class ServerGui implements ActionListener {
 	}
   
 	public JComponent addGuiButtons(JComponent parent, DedicatedServer serverInstance) {
-		serverGUI = (ServerGUI)parent;
+		serverGUI = (MinecraftServerGui)parent;
 		dedicatedServer = serverInstance;
 		JPanel jpanel = new JPanel(new FlowLayout(0));
 		JButton modOptionsButton = new JButton("Mod Options");

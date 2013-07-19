@@ -1,7 +1,6 @@
 package moapi.client;
 
 import java.util.List;
-import net.minecraft.client.Minecraft;
 import net.minecraft.src.*;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.input.Keyboard;

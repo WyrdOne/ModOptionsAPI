@@ -3,8 +3,8 @@ package moapi.client;
 import java.util.*;
 import java.lang.reflect.*;
 import net.minecraft.src.*;
-import net.minecraft.client.*;
 import moapi.*;
+import com.wyrdworld.util.*;
 
 /**
 * Class to add and handle options in the Minecraft Client GUI 
@@ -13,7 +13,6 @@ import moapi.*;
 * @version 1.0.1
 */
 public class ClientGui extends ModOptionCallback {
-  private static StringTranslate translate = StringTranslate.getInstance();
   private static ModOptions guiAPI;
   private static GuiButton guiAPIButton;
 
@@ -61,9 +60,13 @@ public class ClientGui extends ModOptionCallback {
   			mc.displayGuiScreen(new ModMenu(screen));
         break;
 	    case 302: // GuiInGameMenu -> ModOptions
-        if (mc.getServerData() != null) {
-  		    // Multiplayer worlds have no name
-			    mc.displayGuiScreen(new ModMenu((GuiIngameMenu)screen, mc.getServerData().serverName));
+	    	ServerData currentServerData = null;
+	    	try {
+	    		currentServerData = (ServerData)ReflectionHelper.getPrivateValue(Minecraft.class, mc, ServerData.class, 0);
+	    	} catch (Exception ignored) {}
+	    	if (currentServerData!=null) {
+	    		// Multiplayer worlds have no name
+			    mc.displayGuiScreen(new ModMenu((GuiIngameMenu)screen, currentServerData.serverName));
 		    } else {
 			    // Get the world name
 			    String name = mc.getIntegratedServer().getWorldName();

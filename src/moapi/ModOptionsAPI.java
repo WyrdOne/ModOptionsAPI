@@ -33,8 +33,8 @@ public class ModOptionsAPI {
 			worldName = MinecraftServer.getServer().getFolderName();
 			if (worldName==null) { // Server settings not loaded yet
 			  PropertyManager settings = new PropertyManager(new File("server.properties"), MinecraftServer.getServer().getLogAgent());
-        worldName = settings.getProperty("level-name", "world");
-      }
+			  worldName = settings.getStringProperty("level-name", "world");
+			}
 		}
 	}
   
