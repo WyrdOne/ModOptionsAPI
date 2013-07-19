@@ -1,8 +1,8 @@
 ModOptionsAPI
 
 Author: Jonathan Brazell (WyrdOne)
-Version: 1.5.1
-Compatible: Minecraft 1.5.1
+Version: 1.6.2
+Compatible: Minecraft 1.6.2
 Description: An API for allowing simple mod options menus in Minecraft Options menu.
 
 For non-developers, please go to "Installation"
@@ -60,6 +60,8 @@ API Features:
 ------------------
 Version History
 ------------------
+
+1.6.2 - Updated to Minecraft 1.6.2 compatibility.
 
 1.5.1 - Updated to Minecraft 1.5.1 compatibility.
 
